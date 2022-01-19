@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Comecocomicon</title>
+</head>
+<body>
+    <!-- Prueba de slider con Angular Material -->
+    <!--<mat-slider min="1" max="100" step="1" value="50"></mat-slider>-->
+    <mat-grid-list cols="5" rowHeight="50px">
+      <!--
+        <mat-grid-tile
+            *ngFor="let tile of tiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">            
+          {{tile.text}}
+        </mat-grid-tile>
+        -->
+        <mat-grid-tile colspan="5" rowspan="1" style="background-color: aqua;">
+          <h1 style="margin:auto">Comecocomicon tenda de comics on line</h1>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3" rowspan="2" style="background-color:white;">
+          <button class="btMenu" mat-flat-button>Aventures</button>
+          <button class="btMenu" mat-flat-button>Humor</button>
+          <button class="btMenu" mat-flat-button>Manga</button>
+          <button class="btMenu" mat-flat-button>Terror</button>
+          <button class="btMenu" mat-flat-button>Thriller</button>
+          <button class="btMenu" mat-flat-button>Fantastic</button>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="2" style="background-color:orange;">           
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="search" placeholder="search here" class="search-input">                       
+        </mat-grid-tile>
+        <mat-grid-tile colspan="5" rowspan="5" style="background-color:green;">
+          <div class="card" (click)="cardClicked()" [@cardFlip]="data.state" >
+            <div class="face back">
+                <img src="../assets/pepe-gotera-y-otilio-num-31-destrozos-de-artesania.jpg">
+            </div>
+            <div class="face front">
+                <img src="../assets/pepe-gotera-otilio-in.png">
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>      
+</body>
+</html>
+
