@@ -40,8 +40,23 @@ import {
 export class Comic {
 
       data: CardData = {
-       // imageId: "pDGNBK9A0sk",
         state: "default"
+      };
+
+      data2:CardData={
+        state:"default"
+      };
+      data3:CardData={
+        state:"default"
+      };
+      data4:CardData={
+        state:"default"
+      };
+      data5:CardData={
+        state:"default"
+      };
+      data6:CardData={
+        state:"default"
       };
     
       cardClicked() {
@@ -51,4 +66,45 @@ export class Comic {
           this.data.state = "default";
         }
       }
+
+      cardClicked2() {
+        if (this.data2.state === "default") {
+          this.data2.state = "flipped";
+        } else {
+          this.data2.state = "default";
+        }
+      }
+
+      cardClicked3() {
+        if (this.data3.state === "default") {
+          this.data3.state = "flipped";
+        } else {
+          this.data3.state = "default";
+        }
+      }
+
+      cardClicked4() {
+        if (this.data4.state === "default") {
+          this.data4.state = "flipped";
+        } else {
+          this.data4.state = "default";
+        }
+      }
+
+      cardClicked5() {
+        if (this.data5.state === "default") {
+          this.data5.state = "flipped";
+        } else {
+          this.data5.state = "default";
+        }
+      }
+
+      cardClicked6() {
+        if (this.data6.state === "default") {
+          this.data6.state = "flipped";
+        } else {
+          this.data6.state = "default";
+        }
+      }
+
     }
