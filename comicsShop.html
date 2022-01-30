@@ -86,17 +86,16 @@
         </mat-grid-tile>
       </div>
       
-      <div *ngIf="HumorVisible"><!-- Inici del div per a comics d'Humor-->
+      <div id="DivHumor" *ngIf="HumorVisible"><!-- Inici del div per a comics d'Humor-->
         <mat-grid-tile colspan="10">
           <h2 class="md-display-3">Cómics d'humor</h2>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistaComics">
-              <div class="aparador" [@moveCenter]="comic.seleccionat">
-                <img *ngIf="!comic.seleccionat"src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">
-                <img style="object-fit:contain;" *ngIf="comic.seleccionat"src="{{comic.dades}}" height="100%" width="100%" (click)="comic.clicked()">
-              </div>   
-
-       </mat-grid-tile>
+              <div class="aparador">
+                <img [@border]=comic.seleccionat src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">                
+              </div>                 
+        </mat-grid-tile>
+        <div [@moveCenter]="comicseleccionat" id="DadesComic"></div>
        
       </div>
       
