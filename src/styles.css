@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h1{
+    font-size:3.5em;
+}
+.btMenu{
+    background-color: white;
+    border-width: 0ch;
+    margin-right:10px;
+    font-size: 2em;
+}
+
+.btMenu:hover{
+    background-color: yellow;
+}
+
+input{
+    font-size: 1.5em;
+}
+
+.md-display-3{
+    font-size: 2.5em;
+    text-align: center;
+    background-color: aqua;
+}
+
+/*----------------*/
+:host {
+    display: block;
+    perspective: 600px;
+}
+
+.card {
+    margin-left:0.5%;
+    box-shadow: 10px 10px 43px -18px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    height: 400px;
+    width: 300px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.face {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    backface-visibility: hidden;
+}
+
+.face > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.front {
+    transform: rotateY(180deg);
+}
+
+/*------------------*/
+
+.aparador{
+    display:block;
+    width: 100%;
+    height: 100%;
+    object-fit:fill;
+}
+
+#DadesComic{
+    background-color:khaki;
+    color:brown;
+    width:30%;
+    height:20%;
+    position:absolute;
+    top:5%;
+    left: 5%;
+    font-size:2em;
+    font-weight: bold;
+    z-index:1;
+}
+/*
+#DivHumor{
+    z-index: 3;
+}
+*/
