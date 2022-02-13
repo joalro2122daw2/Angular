@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {Tenda} from './Comic';
+import {PipeBusqueda, Tenda} from './Tenda';
 
 /* Prueba de slider con Angular Material */
 import {MatGridListModule} from '@angular/material/grid-list'; 
@@ -14,7 +14,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
-    Tenda
+    Tenda,
+    PipeBusqueda
   ],
   imports: [
     BrowserModule,

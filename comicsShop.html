@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Comecocomicon</title>
 </head>
 <body>
@@ -12,22 +11,57 @@
         <mat-grid-tile colspan="10" rowspan="1" style="background-color: aqua;">
           <h1 style="margin:auto">Comecocomicon tenda de comics on line</h1>
         </mat-grid-tile>
-        <mat-grid-tile colspan="7" rowspan="2" style="background-color:white;">
-          <button class="btMenu" mat-flat-button (click)="mostrarAventures()">Aventures</button>
-          <button class="btMenu" mat-flat-button (click)="mostrarHumor()">Humor</button>
-          <button class="btMenu" mat-flat-button (click)="mostrarManga()">Manga</button>
-          <button class="btMenu" mat-flat-button (click)="mostrarTerror()">Terror</button>
-          <button class="btMenu" mat-flat-button (click)="mostrarThriller()">Thriller</button>
-          <button class="btMenu" mat-flat-button (click)="mostrarFantastic()">Fantastic</button>
+        <mat-grid-tile colspan="7" rowspan="2" style="background-color:white;" style="z-index:0">
+          <button name="btNovetats" class="btMenu" mat-flat-button (click)="mostrarNovetats($event)">Novetats</button>
+          <button name="btAventures" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Aventures</button>
+          <button name="btHumor" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Humor</button>
+          <button name="btManga" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Manga</button>
+          <button name="btTerror" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Terror</button>
+          <button name="btThriller" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Thriller</button>
+          <button name="btFantastic" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Fantastic</button>
         </mat-grid-tile>
+        <!-- Input de cerca-->
         <mat-grid-tile colspan="3" rowspan="2" style="background-color:orange;">           
             <mat-icon matPrefix>search</mat-icon>
-            <input matInput type="search" placeholder="search here" class="search-input">                       
+            
+            <input matInput type="search" name="cercador" placeholder="cerca aquí"
+               class="search-input"
+               (input)="cercaAny(getValue($event))"
+               [(ngModel)]="paraulaCercada"
+              />      
+        <!-- Div del aparador -->
         </mat-grid-tile>
-
-        <div *ngIf="NovetatsVisible"><!-- Inici del div per a les novetats-->
+        <div id="DivComics" *ngIf="cercaVisible"> 
           <mat-grid-tile colspan="10">
-            <h2 class="md-display-3">Últimes novetats</h2>
+            <h2 class="md-display-3">{{titol}}</h2>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistacerca">
+                <div class="aparador">
+                  <img [@border]=comic.seleccionat src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">                
+                </div>                 
+          </mat-grid-tile>
+          <div [@moveCenter]="comicseleccionat" id="DadesComic"></div>
+        </div>
+
+       <!-- Inici del div per a les cerques
+        <div *ngIf="cercaVisible">
+          <mat-grid-tile colspan="10">
+            <h2 class="md-display-3">Resultat de la cerca</h2>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="{{10/llistacerca.length}}" rowspan="10" *ngFor="let comic of llistacerca | pipeCercaAny:paraulaCercada">
+            <div class="card">
+              <div class="face">
+                  <img src="{{comic.imatge}}">
+              </div>
+          </div>
+          </mat-grid-tile>
+        </div>
+      -->
+
+        <!-- Inici del div per a les novetats-->
+        <div *ngIf="NovetatsVisible && !cercaVisible">
+          <mat-grid-tile colspan="10">
+            <h2 class="md-display-3">{{titol}}</h2>
           </mat-grid-tile>
           <mat-grid-tile colspan="10" rowspan="10" style="background-color:green;">
             <div class="card" (click)="cardClicked2()" [@cardFlip]="data2.state" >
@@ -79,27 +113,31 @@
               </div>
             </div>          
           </mat-grid-tile>
-      </div><!-- Fi de div per a les novetats-->
-      <div *ngIf="AventuresVisible"><!-- Inici del div per a comics d'aventura-->
+      </div>
+      <!-- Fi de div per a les novetats-->
+
+      <!-- Inici del div per a comics d'aventura
+      <div *ngIf="AventuresVisible">
         <mat-grid-tile colspan="5">
           <h2 class="md-display-3">Cómics d'aventures</h2>
         </mat-grid-tile>
       </div>
-      
-      <div id="DivHumor" *ngIf="HumorVisible"><!-- Inici del div per a comics d'Humor-->
+    -->
+      <!--Inici del div per a comics d'Humor
+      <div id="DivHumor" *ngIf="HumorVisible"> 
         <mat-grid-tile colspan="10">
           <h2 class="md-display-3">Cómics d'humor</h2>
         </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistaComics">
+        <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistacerca">
               <div class="aparador">
                 <img [@border]=comic.seleccionat src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">                
               </div>                 
         </mat-grid-tile>
         <div [@moveCenter]="comicseleccionat" id="DadesComic"></div>
-       
       </div>
+    -->
       
-
+    <!--
       <div *ngIf="MangaVisible">
         <mat-grid-tile colspan="5">
           <h2 class="md-display-3">Cómics de manga</h2>
@@ -120,6 +158,7 @@
           <h2 class="md-display-3">Cómics de fantasia</h2>
         </mat-grid-tile>
       </div>
+      -->
       </mat-grid-list>    
 </body>
 </html>
