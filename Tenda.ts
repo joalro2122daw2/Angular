@@ -1,6 +1,7 @@
 import { Component ,HostBinding} from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Comic } from "./Comic"
+import { GestorMostres } from './GestorMostres';
 
 
 
@@ -230,6 +231,12 @@ export class Tenda {
         this.llistacerca = [];
         this.titol = "Resultat de la cerca";       
         this.llistacerca = this.llistaComics.filter((comic) => comic.any.toString() === paraula);
+        //GestorMostres.seleccionats.push( new Comic("Varis",1973,"../assets/aventures/adventure.jpg",this,112,"tapa blanda","aventures"));
+        if(this.llistacerca.length > 0)
+        {
+          GestorMostres.visible = true;
+          GestorMostres.seleccionats = this.llistacerca;
+        }
         //alert("Quantitat cercada: " + this.llistacerca.length);                 
         //this.llistacerca.forEach(x => alert("A cercaAny: " + x.autor))
       }
@@ -240,6 +247,7 @@ export class Tenda {
       getName(event: Event): string {
         return (event.target as HTMLInputElement).name;
       }
+
 
       
 
