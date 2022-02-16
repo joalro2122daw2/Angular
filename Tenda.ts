@@ -225,20 +225,26 @@ export class Tenda {
 
       }
       
-      cercaAny(paraula:string):void{
-        this.NovetatsVisible = false;
-        this.cercaVisible = true;
-        this.llistacerca = [];
-        this.titol = "Resultat de la cerca";       
+
+      cercaAny(paraula:string):void{    
+        this.llistacerca = [];    
         this.llistacerca = this.llistaComics.filter((comic) => comic.any.toString() === paraula);
         //GestorMostres.seleccionats.push( new Comic("Varis",1973,"../assets/aventures/adventure.jpg",this,112,"tapa blanda","aventures"));
         if(this.llistacerca.length > 0)
         {
+          this.NovetatsVisible = false;
+          this.cercaVisible = true;          
+          this.titol = "Resultat de la cerca";       
           GestorMostres.visible = true;
           GestorMostres.seleccionats = this.llistacerca;
         }
-        //alert("Quantitat cercada: " + this.llistacerca.length);                 
-        //this.llistacerca.forEach(x => alert("A cercaAny: " + x.autor))
+        else
+        {
+          this.NovetatsVisible = true;
+          this.cercaVisible = false;                          
+          GestorMostres.visible = false;
+          this.titol = "Últimes novetats";   
+        }
       }
 
       getValue(event: Event): string {

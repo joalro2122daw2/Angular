@@ -1,5 +1,9 @@
-    <div *ngIf="staticVisible">
-        <div *ngFor="let comic of staticSeleccionats">
-            <div> {{comic.autor}} </div>
-        </div>  
+<mat-grid-list cols="10" rowHeight="60px" >
+    <div *ngIf="staticVisible">        
+        <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of staticSeleccionats">
+            <div class="aparador">
+                <img src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">                          
+            </div>                 
+        </mat-grid-tile>             
     </div>
+</mat-grid-list>
