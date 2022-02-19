@@ -2,6 +2,7 @@ import { CardData } from "./Tenda";
 import { Tenda } from "./Tenda";
 
 export class Comic{
+    id:number;
     autor:string ="";
     any:number = 0;
     preu:number = 0;
@@ -10,32 +11,39 @@ export class Comic{
     data:CardData = {state:'default'};
     seleccionat:boolean=false;
     tenda:Tenda;
-    dades:string="";
+    //dades:string="";
+    dades:Object
     tapa:string="";
     tema:string="";
   
   
-    constructor(author:string,year:number,image:string,shop:Tenda,price:number,cover:string,topic:string)
+    constructor(item:number,author:string,year:number,image:string,shop:Tenda,price:number,cover:string,topic:string)
     {
+      this.id = item; 
       this.autor = author;
       this.any = year;
       this.imatge = image;
       this.clicked = this.aparadorClicked;
       this.tenda = shop;
       this.preu = price;
-      this.tapa = cover;
-      this.dades = "Autor: " + this.autor + "<br>Any: " + this.any + "<br>Preu: " + this.preu + "€" + "<br>Tapa: " + this.tapa ; 
+      this.tapa = cover;           
+      this.dades = Object.create(this);
       this.tema = topic;
     }
   
     aparadorClicked()
-    {
-      //alert("clicat");
-      this.seleccionat = !this.seleccionat;
-      this.tenda.comicseleccionat = !this.tenda.comicseleccionat;
-      this.tenda.contingut = this.dades;
+    {      
+      this.tenda.comicseleccionat = true;
+      console.log("Seleccionat: " + this.tenda.comicseleccionat);
+      this.seleccionat = true;
+      this.tenda.contingut = this;
       if(this.tenda.comicseleccionat)
-        this.tenda.mostrarDades();
-      this.seleccionat = !this.seleccionat;
+        this.tenda.mostrarDades();     
+    }
+
+    toString()
+    {
+      return "Ref: " + this.id + "<br>Autor: " + this.autor + "<br>Any: " + this.any +
+       "<br>Preu: " + this.preu +"€";
     }
   }

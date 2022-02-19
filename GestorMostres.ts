@@ -3,7 +3,7 @@ import { Component ,HostBinding} from '@angular/core';
 import { Comic } from './Comic';
 
 @Component({
-    selector: 'mostra',
+    //selector: 'mostra',
     templateUrl: 'mostraForm.html',
     /*
     animations: [
