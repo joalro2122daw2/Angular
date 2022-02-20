@@ -292,7 +292,7 @@ export class Tenda {
 
       mostraAleatoria()
       {
-        //Trobar 10 nombres aleatoris
+        //Trobar 10 nombres aleatoris no repetits
         let conta = 0;
         let nums:Number[] = [];
         while(conta < 10)
@@ -304,6 +304,7 @@ export class Tenda {
             conta++;
           }
         }
+        //Omplir la llista amb els comics
         let sel:Comic[] = [];
         for(conta; conta >= 0;conta--)
         {
