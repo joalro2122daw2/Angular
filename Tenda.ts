@@ -9,6 +9,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { RouterLink } from '@angular/router';
 
 
   export interface CardData {
@@ -25,7 +26,7 @@ export class PipeBusqueda implements PipeTransform{
 }
 
 @Component({
-  selector: 'router-outlet',
+  selector: 'aplicacio',
   templateUrl: 'comicsShop.html',
   animations: [
     trigger('cardFlip', [
@@ -205,17 +206,31 @@ export class Tenda {
 
       public mostrarAparador(ev:Event){
         let bt = this.getName(ev);
-        this.NovetatsVisible = false;
-        this.cercaVisible = true;
+        this.NovetatsVisible=true;
+        this.cercaVisible =false;        
+        GestorMostres.mostraaleat = false;
         switch(bt)
         {
-          case "btHumor":
+          case "btHumor":  
+            //window.location.href='/tenda'; 
+            this.NovetatsVisible = false;   
+            this.cercaVisible = true;      
             this.titol = "Comics d'Humor";
             this.llistacerca = this.llistaComics.filter((comic) => comic.tema === "humor");
             break;
           case "btAventures":
+            //window.location.href='/tenda';
+            this.NovetatsVisible = false;
+            this.cercaVisible = true;      
             this.titol = "Comics d'aventures";
             this.llistacerca = this.llistaComics.filter((comic) => comic.tema === "aventures");
+            break;
+          case "btAleat":
+            GestorMostres.mostraaleat = true;   
+            this.NovetatsVisible = false;         
+            this.llistacerca = [];
+            this.mostraAleatoria();
+            this.cercaVisible = false;            
             break;
         }                
       }
@@ -228,22 +243,20 @@ export class Tenda {
       }
       
 
-      cercaAny(paraula:string):void{    
+      cercaAny(paraula:string):void{  
+        this.cercaVisible = false;  
         this.llistacerca = [];    
-        this.llistacerca = this.llistaComics.filter((comic) => comic.any.toString() === paraula);
-        //GestorMostres.seleccionats.push( new Comic("Varis",1973,"../assets/aventures/adventure.jpg",this,112,"tapa blanda","aventures"));
+        this.llistacerca = this.llistaComics.filter((comic) => comic.any.toString() === paraula);        
         if(this.llistacerca.length > 0)
         {
-          this.NovetatsVisible = false;
-          this.cercaVisible = true;          
+          this.NovetatsVisible = false;                  
           this.titol = "Resultat de la cerca";       
           GestorMostres.visible = true;
           GestorMostres.seleccionats = this.llistacerca;
         }
         else
         {
-          this.NovetatsVisible = true;
-          this.cercaVisible = false;                          
+          this.NovetatsVisible = true;                                   
           GestorMostres.visible = false;
           this.titol = "Últimes novetats";   
         }
@@ -275,6 +288,30 @@ export class Tenda {
       { 
         let favorits = (sessionStorage.getItem("Favorits"))?.split(';');
         return favorits?.includes(comic.id.toString());
+      }
+
+      mostraAleatoria()
+      {
+        //Trobar 10 nombres aleatoris
+        let conta = 0;
+        let nums:Number[] = [];
+        while(conta < 10)
+        {
+          let aleat = Math.floor((Math.random() * (40-1) + 1));
+          if((nums.find(x => x === aleat)) === undefined)
+          {
+            nums.push(aleat)
+            conta++;
+          }
+        }
+        let sel:Comic[] = [];
+        for(conta; conta >= 0;conta--)
+        {
+          let comic = this.llistaComics.find(x => x.id === nums[conta]);
+          if(comic)          
+            sel.push(comic);                  
+        }
+        GestorMostres.seleccionats = sel;
       }
     }
 

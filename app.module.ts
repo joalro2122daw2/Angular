@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-
 import {PipeBusqueda, Tenda} from './Tenda';
 
 /* Prueba de slider con Angular Material */
@@ -14,13 +13,12 @@ import { GestorMostres } from './GestorMostres';
 
 const encaminaments: Routes = [
   { path: '', redirectTo: './Tenda', pathMatch: 'full' },
-  { path: 'Tenda',component:PipeBusqueda},
+  { path: 'tenda',component:GestorMostres},
   { path: 'mostra',component:GestorMostres}
 ];
 
 
-@NgModule({
-  
+@NgModule({  
   declarations: [
     Tenda,
     PipeBusqueda,

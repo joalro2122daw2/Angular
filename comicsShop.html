@@ -3,14 +3,12 @@
         <mat-grid-tile colspan="10" rowspan="1">
           <h1 style="margin:auto">Comecocomicon tenda de comics on line</h1>
         </mat-grid-tile>
-        <mat-grid-tile colspan="7" rowspan="2" style="background-color:white;" style="z-index:0">
-          <button name="btNovetats" class="btMenu" mat-flat-button (click)="mostrarNovetats($event)">Novetats</button>
-          <button name="btAventures" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Aventures</button>
-          <button name="btHumor" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Humor</button>
-          <button name="btManga" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Manga</button>
-          <button name="btTerror" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Terror</button>
-          <button name="btThriller" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Thriller</button>
-          <button name="btFantastic" class="btMenu" mat-flat-button (click)="mostrarAparador($event)">Fantastic</button>
+        <!-- Menu -->
+        <mat-grid-tile colspan="7" rowspan="2" style="z-index:0">          
+          <a class="btMenu" (click)="mostrarAparador($event)" routerLink="" routerLinkActive = "active" name="btNovetats">Novetats</a>
+          <a class="btMenu" (click)="mostrarAparador($event)" routerLink="/tenda" routerLinkActive = "active" name="btHumor">Humor</a>
+          <a class="btMenu" (click)="mostrarAparador($event)" routerLink="/tenda" routerLinkActive = "active" name="btAventures">Aventures</a>
+          <a class="btMenu" (click)="mostrarAparador($event)" routerLink="/mostra" routerLinkActive = "active" name="btAleat">Mostra aleatòria</a>         
         </mat-grid-tile>
         <!-- Input de cerca-->
         <mat-grid-tile colspan="3" rowspan="2">           
@@ -20,12 +18,11 @@
                (input)="cercaAny(getValue($event))"
                [(ngModel)]="paraulaCercada"
               />                  
-        </mat-grid-tile>
-        
+        </mat-grid-tile>        
         <!-- Div per mostrar dades quan es prem sobre una imatge -->
         <div [@moveCenter]="comicseleccionat" id="DadesComic">         
         </div>
-        <!-- Div de les Novetats -->
+        <!-- Div del aparador -->
         <div *ngIf="!NovetatsVisible" id="DivComics"> 
           <mat-grid-tile colspan="10">
             <h2 class="md-display-3">{{titol}}</h2>       
@@ -102,6 +99,6 @@
           </mat-grid-tile>
       </div>
     </mat-grid-list>        
-    
+    <router-outlet></router-outlet>
 
 
