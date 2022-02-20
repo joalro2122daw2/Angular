@@ -31,9 +31,12 @@
             <h2 class="md-display-3">{{titol}}</h2>       
           </mat-grid-tile>
           <div *ngIf="!comicseleccionat">
-            <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistacerca">
-                  <div class="aparador">
-                    <img [@border]=comic.seleccionat src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">                
+            <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistacerca">                  
+                  <div *ngIf="estaEnFavorits(comic)" class="aparador" [@border]=comic.seleccionat>
+                    <img src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()" style="border:15px solid red">                
+                  </div>                 
+                  <div *ngIf="!estaEnFavorits(comic)" class="aparador" [@border]=comic.seleccionat>
+                    <img src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()" style="border:1px solid black">                
                   </div>                 
             </mat-grid-tile>   
         </div>  
@@ -98,52 +101,7 @@
             </div>          
           </mat-grid-tile>
       </div>
-      <!-- Fi de div per a les novetats-->
-
-      <!-- Inici del div per a comics d'aventura
-      <div *ngIf="AventuresVisible">
-        <mat-grid-tile colspan="5">
-          <h2 class="md-display-3">Cómics d'aventures</h2>
-        </mat-grid-tile>
-      </div>
-    -->
-      <!--Inici del div per a comics d'Humor
-      <div id="DivHumor" *ngIf="HumorVisible"> 
-        <mat-grid-tile colspan="10">
-          <h2 class="md-display-3">Cómics d'humor</h2>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="5" *ngFor="let comic of llistacerca">
-              <div class="aparador">
-                <img [@border]=comic.seleccionat src="{{comic.imatge}}" height="100%" width="100%" (click)="comic.clicked()">                
-              </div>                 
-        </mat-grid-tile>
-        <div [@moveCenter]="comicseleccionat" id="DadesComic"></div>
-      </div>
-    -->
-      
-    <!--
-      <div *ngIf="MangaVisible">
-        <mat-grid-tile colspan="5">
-          <h2 class="md-display-3">Cómics de manga</h2>
-        </mat-grid-tile>
-      </div>
-      <div *ngIf="TerrorVisible">
-        <mat-grid-tile colspan="5">
-          <h2 class="md-display-3">Cómics de terror</h2>
-        </mat-grid-tile>
-      </div>
-      <div *ngIf="ThrillerVisible">
-        <mat-grid-tile colspan="5">
-          <h2 class="md-display-3">Cómics de thriller</h2>
-        </mat-grid-tile>
-      </div>
-      <div *ngIf="FantasticVisible">
-        <mat-grid-tile colspan="5">
-          <h2 class="md-display-3">Cómics de fantasia</h2>
-        </mat-grid-tile>
-      </div>
-      -->
-      </mat-grid-list>        
-      <router-outlet></router-outlet>
+    </mat-grid-list>        
+    
 
 

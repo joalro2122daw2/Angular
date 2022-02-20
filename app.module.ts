@@ -14,7 +14,6 @@ import { GestorMostres } from './GestorMostres';
 
 const encaminaments: Routes = [
   { path: '', redirectTo: './Tenda', pathMatch: 'full' },
-  { path: 'Tenda', component: Tenda },
   { path: 'Tenda',component:PipeBusqueda},
   { path: 'mostra',component:GestorMostres}
 ];

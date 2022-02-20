@@ -25,7 +25,7 @@ export class PipeBusqueda implements PipeTransform{
 }
 
 @Component({
-  selector: 'aplicacio',
+  selector: 'router-outlet',
   templateUrl: 'comicsShop.html',
   animations: [
     trigger('cardFlip', [
@@ -69,6 +69,7 @@ export class Tenda {
   contingut:Comic;
   paraulaCercada:string="";
   titol = "Últimes novetats";
+  
   
 
 
@@ -271,8 +272,9 @@ export class Tenda {
       }
 
       estaEnFavorits(comic:Comic)
-      {
-        return true;
+      { 
+        let favorits = (sessionStorage.getItem("Favorits"))?.split(';');
+        return favorits?.includes(comic.id.toString());
       }
     }
 
