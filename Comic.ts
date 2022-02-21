@@ -11,8 +11,6 @@ export class Comic{
     data:CardData = {state:'default'};
     seleccionat:boolean=false;
     tenda:Tenda;
-    //dades:string="";
-    dades:Object
     tapa:string="";
     tema:string="";
   
@@ -27,14 +25,12 @@ export class Comic{
       this.tenda = shop;
       this.preu = price;
       this.tapa = cover;           
-      this.dades = Object.create(this);
       this.tema = topic;
     }
   
     aparadorClicked()
     {      
-      this.tenda.comicseleccionat = true;
-      console.log("Seleccionat: " + this.tenda.comicseleccionat);
+      this.tenda.comicseleccionat = true;      
       this.seleccionat = true;
       this.tenda.contingut = this;
       if(this.tenda.comicseleccionat)

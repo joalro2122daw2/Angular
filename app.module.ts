@@ -5,16 +5,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import {PipeBusqueda, Tenda} from './Tenda';
 
-/* Prueba de slider con Angular Material */
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { GestorMostres } from './GestorMostres';
+import { MostraFavorits } from './mostraFavorits';
 
 const encaminaments: Routes = [
   { path: '', redirectTo: './Tenda', pathMatch: 'full' },
   { path: 'tenda',component:GestorMostres},
-  { path: 'mostra',component:GestorMostres}
+  { path: 'mostra',component:GestorMostres},
+  { path: 'mostraFavorits',component:MostraFavorits}
 ];
 
 
@@ -22,7 +23,8 @@ const encaminaments: Routes = [
   declarations: [
     Tenda,
     PipeBusqueda,
-    GestorMostres
+    GestorMostres,
+    MostraFavorits
   ],
   
   imports: [

@@ -9,8 +9,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import { RouterLink } from '@angular/router';
-
+import { MostraFavorits } from './mostraFavorits';
 
   export interface CardData {
     state: 'default' | 'flipped' | 'matched';
@@ -66,10 +65,12 @@ export class Tenda {
 
   NovetatsVisible:boolean = true;
   cercaVisible:boolean = false;
+  favoritsVisible:boolean = false;
   comicseleccionat:boolean = false;  
   contingut:Comic;
   paraulaCercada:string="";
   titol = "Últimes novetats";
+  db:Object;
   
   
 
@@ -229,13 +230,17 @@ export class Tenda {
             GestorMostres.mostraaleat = true;   
             this.NovetatsVisible = false;         
             this.llistacerca = [];
+            this.titol = "Mostra aleatòria";
             this.mostraAleatoria();
             this.cercaVisible = false;            
             break;
+          case "btNovetats":
+            this.NovetatsVisible = true;
+            this.favoritsVisible = false;
         }                
       }
 
-      public mostrarNovetats(ev:Event)
+      mostrarNovetats(ev:Event)
       {
         this.titol = "Últimes novetats";
         this.NovetatsVisible = true;
@@ -252,7 +257,7 @@ export class Tenda {
           this.NovetatsVisible = false;                  
           this.titol = "Resultat de la cerca";       
           GestorMostres.visible = true;
-          GestorMostres.seleccionats = this.llistacerca;
+          GestorMostres.seleccionats = this.llistacerca;        
         }
         else
         {
@@ -314,6 +319,20 @@ export class Tenda {
         }
         GestorMostres.seleccionats = sel;
       }
-    }
+
+      mostrarFavorits(event:Event)
+      {
+         MostraFavorits.visible = true;
+         this.favoritsVisible = true;
+         this.titol = "";
+         let llistaindex = (sessionStorage.getItem("Favorits")?.split(';'));
+         MostraFavorits.llistaFavorits = [];
+         llistaindex?.forEach(i =>{
+            let comic = this.llistaComics.find(c => c.id.toString() === i);
+            if(comic !== undefined)
+                MostraFavorits.llistaFavorits.push(comic);
+         });
+      }
+    }//Fi de la classe
 
     

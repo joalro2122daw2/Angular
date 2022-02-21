@@ -9,6 +9,7 @@
           <a class="btMenu" (click)="mostrarAparador($event)" routerLink="/tenda" routerLinkActive = "active" name="btHumor">Humor</a>
           <a class="btMenu" (click)="mostrarAparador($event)" routerLink="/tenda" routerLinkActive = "active" name="btAventures">Aventures</a>
           <a class="btMenu" (click)="mostrarAparador($event)" routerLink="/mostra" routerLinkActive = "active" name="btAleat">Mostra aleatòria</a>         
+          <button class="btMenu" (click)="mostrarFavorits($event)" routerLink="/mostraFavorits" routerLinkActive = "active" name="btFavorits">Mostra Favorits</button>
         </mat-grid-tile>
         <!-- Input de cerca-->
         <mat-grid-tile colspan="3" rowspan="2">           
@@ -43,7 +44,7 @@
         </div>    
         </div>
         <!-- Inici del div per a les novetats-->
-        <div *ngIf="NovetatsVisible && !cercaVisible">
+        <div *ngIf="NovetatsVisible && !cercaVisible && !favoritsVisible">
           <mat-grid-tile colspan="10">
             <h2 class="md-display-3">{{titol}}</h2>
           </mat-grid-tile>
@@ -98,7 +99,7 @@
             </div>          
           </mat-grid-tile>
       </div>
-    </mat-grid-list>        
-    <router-outlet></router-outlet>
+    </mat-grid-list>         
+   <router-outlet></router-outlet>
 
 
